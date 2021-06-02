@@ -2,10 +2,10 @@
 require_once 'config.php';
 
 $cerereSQL = 'SELECT * FROM `html` WHERE `id`="'.$_GET['id'].'"';
-$rezultat = mysql_query($cerereSQL, $conexiune);
-	while($rand = mysql_fetch_array($rezultat)) {
+$rezultat = mysqli_query($conexiune, $cerereSQL);
+	while($rand = mysqli_fetch_assoc($rezultat)) {
 		$cerereSQL = "UPDATE `html` SET `hits`='".($rand['hits']+1)."' WHERE `id`='".$_GET['id']."' ";
-		mysql_query($cerereSQL, $conexiune);
+		mysqli_query($conexiune, $cerereSQL);
 		echo '<frameset rows="60,*,22" framespacing="0" border="0" frameborder="0">
 			<frame height="60" name="header" scrolling="no" noresize target="main" src="top.php?id='.$_GET['id'].'" marginwidth="0" marginheight="0">
 			<frame name="main" marginwidth="0" marginheight="0" src="'.$rand['url'].'" scrolling="auto" noresize>

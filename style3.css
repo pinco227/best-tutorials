@@ -1,7 +1,7 @@
 /* Best-Tutorials.Net StyleSheet */
 
 body {
-	background-color: #000000;
+	background-color: #84959e;
 	font: normal 10px Arial, Helvetica, sans-serif;
 	margin: 0px 0px 0px 0px;
 	color: #000000;
@@ -13,12 +13,14 @@ body {
 	scrollbar-arrow-color: #FFFFFF;
 	scrollbar-track-color: #000000;
 }
+
 td {
 	background-color: #FFFFFF;
 	padding: 0px 5px 0px 5px;
 	font: normal 10px Arial, Helvetica, sans-serif;
 	color: #000000;
 }
+
 td.orange {
 	background-image: url('images/button_fundal.jpg');
 	padding: 0px 0px 0px 0px;
@@ -26,45 +28,54 @@ td.orange {
 	font-weight: bolder;
 	color: #FFFFFF;
 }
-h1,h2,h3,h4 {
+
+h1, h2, h3, h4 {
 	text-align: center;
 	text-transform: capitalize;
 }
+
 ul {
 	list-style-type: circle;
 	margin: 0px 0px 0px 15px;
 	padding: 0px 0px 0px 5px;
 }
+
 li {
 	list-style-type: circle;
 }
+
 img {
 	border: 0px;
 }
+
 a:link, a:visited {
 	color: #0078ff;
 	font-weight: bold;
-	text-decoration:none;
+	text-decoration: none;
 	font-size: 11px;
 }
+
 a:hover, a:active {
 	color: #0078ff;
 	border-bottom: 1px dashed #0078ff;
-	text-decoration:none;
+	text-decoration: none;
 	font-size: 11px;
 }
+
 a.orange:link, a.orange:visited, a.orange:active {
 	color: #FFFFFF;
-	text-decoration:none;
+	text-decoration: none;
 	font-weight: bolder;
 	font-size: 11px;
 }
+
 a.orange:hover {
 	color: #e3e3e3;
-	text-decoration:none;
+	text-decoration: none;
 	font-weight: bolder;
 	font-size: 11px;
 }
+
 div.shoutbox {
 	font-size: 10px;
 	width: 130px;
@@ -80,9 +91,11 @@ div.shoutbox {
 	scrollbar-arrow-color: #FFFFFF;
 	scrollbar-track-color: #FFFFFF;
 }
-img.smileys { 
+
+img.smileys {
 	border: 0px;
 }
+
 input {
 	padding: 0px;
 	border: 1px dashed #0078ff;
@@ -90,6 +103,7 @@ input {
 	color: #000000;
 	font: normal 10px Arial, Helvetica, sans-serif;
 }
+
 .search {
 	margin: 0px 0px 0px 0px;
 	background-color: #FFFFFF;
@@ -97,6 +111,7 @@ input {
 	color: #000000;
 	font-size: 10px;
 }
+
 .button {
 	font-weight: bold;
 	font-size: 10px;
@@ -107,6 +122,7 @@ input {
 	background-image: url('images/button_fundal.jpg');
 	padding: 0px 5px 0px 5px;
 }
+
 select {
 	padding: 0px;
 	border: 1px dashed #0078ff;
@@ -121,6 +137,7 @@ select {
 	scrollbar-arrow-color: #FFFFFF;
 	scrollbar-track-color: #FFFFFF;
 }
+
 textarea {
 	padding: 0px;
 	border: 1px dashed #0078ff;
@@ -135,12 +152,14 @@ textarea {
 	scrollbar-arrow-color: #FFFFFF;
 	scrollbar-track-color: #FFFFFF;
 }
+
 .fieldset {
 	border: 1px dashed #0078ff;
 	color: #000000;
 	font: normal 10px Arial, Helvetica, sans-serif;
 	padding: 5px 5px 5px 5px;
 }
+
 .legend {
 	background-color: #FFFFFF;
 	font: normal 11px Arial, Helvetica, sans-serif;
@@ -148,6 +167,7 @@ textarea {
 	font-weight: bold;
 	padding: 0px 5px 0px 5px;
 }
+
 .content {
 	background-color: #FFFFFF;
 	font: normal 10px Arial, Helvetica, sans-serif;
@@ -155,6 +175,7 @@ textarea {
 	margin: 15px 5px 15px 5px;
 	padding: 15px 3px 15px 3px;
 }
+
 td.display {
 	background-color: #c8ebff;
 	font: normal 10px Arial, Helvetica, sans-serif;

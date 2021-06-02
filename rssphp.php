@@ -14,10 +14,10 @@ exit ("Insufficant Parameters");
 // only select the columns you need, thus reducing the work the DBMS has to do.
 $query = "SELECT * FROM `php` WHERE `aprove`='Yes' ORDER BY `id` DESC LIMIT 10";
 // execute the query
-$results = mysql_query ($query) or exit( mysql_error());
+$results = mysqli_query ($query) or exit( mysqli_error());
 
 // check for the number of rows returned before doing any further actions.
-if (mysql_num_rows ($results) == 0){
+if (mysqli_num_rows ($results) == 0){
 exit("Nothing to Show Here");
 }
 else {
@@ -36,7 +36,7 @@ $rss .= "<rss version=\"$version\">\r\n";
 $rss .= "<channel>\r\n";
 $rss .= "<title>" . ucwords($title) . "</title>\r\n";
 
-while ($row = mysql_fetch_array($results)){
+while ($row = mysqli_fetch_assoc($results)){
 
 $rss .= "<item>\r\n";
 $rss .= "<title>" . date("D dS M Y", $row['data']) . " : " . $row['title'] . "</title>\r\n";

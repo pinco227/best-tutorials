@@ -1,56 +1,53 @@
 <?php
 
-include_once ("config.php");
+include_once("config.php");
 
 
-	$query = "SELECT * FROM `php` WHERE `id`='$id' LIMIT 1";
-	$result = mysql_query($query);
-	$numrows = mysql_num_rows($result);
+$query = "SELECT * FROM `php` WHERE `id`='$id' LIMIT 1";
+$result = mysqli_query($conexiune, $query);
+$numrows = mysqli_num_rows($result);
 
-	while($row = mysql_fetch_array($result))
+while ($row = mysqli_fetch_assoc($result))
 
-if($id == "$row[id]"){
+	if ($id == "$row[id]") {
 
-echo "<html>
+		echo "<html>
 <body bgcolor='lightgrey'>";
 
-	$query = "SELECT * FROM `php` WHERE `id`='$id' LIMIT 1";
-	$result = mysql_query($query);
-	$numrows = mysql_num_rows($result);
+		$query = "SELECT * FROM `php` WHERE `id`='$id' LIMIT 1";
+		$result = mysqli_query($conexiune, $query);
+		$numrows = mysqli_num_rows($result);
 
-	while($row = mysql_fetch_array($result))
+		while ($row = mysqli_fetch_assoc($result))
 
-$cra = $row[rates] + 1;
+			$cra = $row['rates'] + 1;
 
-	$query = "SELECT * FROM `php` WHERE `id`='$id' LIMIT 1";
-	$result = mysql_query($query);
-	$numrows = mysql_num_rows($result);
+		$query = "SELECT * FROM `php` WHERE `id`='$id' LIMIT 1";
+		$result = mysqli_query($conexiune, $query);
+		$numrows = mysqli_num_rows($result);
 
-	while($row = mysql_fetch_array($result))
+		while ($row = mysqli_fetch_assoc($result))
 
-$crs = $row[rating] + $crating;
+			$crs = $row['rating'] + $crating;
 
-$query = "UPDATE `php` SET `rates`='$cra' WHERE `id`='$id'";
-mysql_query($query);
+		$query = "UPDATE `php` SET `rates`='$cra' WHERE `id`='$id'";
+		mysqli_query($conexiune, $query);
 
-$query2 = "UPDATE `php` SET `rating`='$crs' WHERE `id`='$id'";
-mysql_query($query2);
-
-
-echo "<center><font color='black' face='verdana' size='1'><B>Your vote has been counted!</B>";
-
-	$query = "SELECT * FROM `php` WHERE `id`='$id' LIMIT 1";
-	$result = mysql_query($query);
-	$numrows = mysql_num_rows($result);
-
-	while($row = mysql_fetch_array($result))
-
-$fout = $row[rating] / $row[rates];
-$fout2 = round($fout, 1);
-
-$query2 = "UPDATE `php` SET `rd`='$fout2' WHERE `id`='$id'";
-mysql_query($query2);
+		$query2 = "UPDATE `php` SET `rating`='$crs' WHERE `id`='$id'";
+		mysqli_query($conexiune, $query2);
 
 
+		echo "<center><font color='black' face='verdana' size='1'><B>Your vote has been counted!</B>";
 
-}
+		$query = "SELECT * FROM `php` WHERE `id`='$id' LIMIT 1";
+		$result = mysqli_query($conexiune, $query);
+		$numrows = mysqli_num_rows($result);
+
+		while ($row = mysqli_fetch_assoc($result))
+
+			$fout = $row['rating'] / $row['rates'];
+		$fout2 = round($fout, 1);
+
+		$query2 = "UPDATE `php` SET `rd`='$fout2' WHERE `id`='$id'";
+		mysqli_query($conexiune, $query2);
+	}

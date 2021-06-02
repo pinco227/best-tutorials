@@ -17,29 +17,28 @@ switch($_GET['page'])
    case '';
    echo '<br><br><br>
    <p><center><h3>Welcome Admin '.$_SESSION['usrname'].' !</h3></center></p><br><p></p>';
-   
-$css = mysql_result(mysql_query('SELECT COUNT(*) as Num FROM `css` WHERE `aprove`="Yes"'),0);
-$css2 = mysql_result(mysql_query('SELECT COUNT(*) as Num FROM `css` WHERE `aprove`="No"'),0);
-$html = mysql_result(mysql_query('SELECT COUNT(*) as Num FROM `html` WHERE `aprove`="Yes"'),0);
-$html2 = mysql_result(mysql_query('SELECT COUNT(*) as Num FROM `html` WHERE `aprove`="No"'),0);
-$ps = mysql_result(mysql_query('SELECT COUNT(*) as Num FROM `ps` WHERE `aprove`="Yes"'),0);
-$ps2 = mysql_result(mysql_query('SELECT COUNT(*) as Num FROM `ps` WHERE `aprove`="No"'),0);
-$php = mysql_result(mysql_query('SELECT COUNT(*) as Num FROM `php` WHERE `aprove`="Yes"'),0);
-$php2 = mysql_result(mysql_query('SELECT COUNT(*) as Num FROM `php` WHERE `aprove`="No"'),0);
-$link = mysql_result(mysql_query('SELECT COUNT(*) as Num FROM `banner` WHERE `aprove`="Yes"'),0);
-$link2 = mysql_result(mysql_query('SELECT COUNT(*) as Num FROM `banner` WHERE `aprove`="No"'),0);
+$css = mysqli_num_rows(mysqli_query($conexiune, 'SELECT COUNT(*) as Num FROM `css` WHERE `aprove`="Yes"'));
+$css2 = mysqli_num_rows(mysqli_query($conexiune, 'SELECT COUNT(*) as Num FROM `css` WHERE `aprove`="No"'));
+$html = mysqli_num_rows(mysqli_query($conexiune, 'SELECT COUNT(*) as Num FROM `html` WHERE `aprove`="Yes"'));
+$html2 = mysqli_num_rows(mysqli_query($conexiune, 'SELECT COUNT(*) as Num FROM `html` WHERE `aprove`="No"'));
+$ps = mysqli_num_rows(mysqli_query($conexiune, 'SELECT COUNT(*) as Num FROM `ps` WHERE `aprove`="Yes"'));
+$ps2 = mysqli_num_rows(mysqli_query($conexiune, 'SELECT COUNT(*) as Num FROM `ps` WHERE `aprove`="No"'));
+$php = mysqli_num_rows(mysqli_query($conexiune, 'SELECT COUNT(*) as Num FROM `php` WHERE `aprove`="Yes"'));
+$php2 = mysqli_num_rows(mysqli_query($conexiune, 'SELECT COUNT(*) as Num FROM `php` WHERE `aprove`="No"'));
+$link = mysqli_num_rows(mysqli_query($conexiune, 'SELECT COUNT(*) as Num FROM `banner` WHERE `aprove`="Yes"'));
+$link2 = mysqli_num_rows(mysqli_query($conexiune, 'SELECT COUNT(*) as Num FROM `banner` WHERE `aprove`="No"'));
 
-if('.$css2.' >= 1) {$csscolor = FF0000;}
-elseif('.$html2.' >= 1) {$htmlcolor = FF0000;}
-elseif('.$ps2.' >= 1) {$pscolor = FF0000;}
-elseif('.$php2.' >= 1) {$phpcolor = FF0000;}
-elseif('.$link2.' >= 1) {$linkcolor = FF0000;}
+if('.$css2.' >= 1) {$csscolor = 'FF0000';}
+elseif('.$html2.' >= 1) {$htmlcolor = 'FF0000';}
+elseif('.$ps2.' >= 1) {$pscolor = 'FF0000';}
+elseif('.$php2.' >= 1) {$phpcolor = 'FF0000';}
+elseif('.$link2.' >= 1) {$linkcolor = 'FF0000';}
 else {
-$csscolor = 000000;
-$htmlcolor = 000000;
-$pscolor = 000000;
-$phpcolor = 000000;
-$linkcolor = 000000;
+$csscolor = '000000';
+$htmlcolor = '000000';
+$pscolor = '000000';
+$phpcolor = '000000';
+$linkcolor = '000000';
 }
 
 echo '<center><br>CSS Tutorials Aproved : <b>'.$css.'</b><br>CSS Tutorials Waiting : <font color="#'.$csscolor.'">'.$css2.'</font><br>HTML Tutorials Aproved : <b>'.$html.'</b><br>HTML Tutorials Waiting : <font color="#'.$htmlcolor.'">'.$html2.'</font><br>Photoshop Tutorials Aproved : <b>'.$ps.'</b><br>Photoshop Tutorials Waiting : <font color="#'.$pscolor.'">'.$ps2.'</font><br>PHP Tutorials Aproved : <b>'.$php.'</b><br>PHP Tutorials Waiting : <font color="#'.$phpcolor.'">'.$php2.'</font><br>Links Aproved : <b>'.$link.'</b><br>Links Waiting : <font color="#'.$linkcolor.'">'.$link2.'</font></center>';
@@ -68,8 +67,8 @@ echo '<center><br>CSS Tutorials Aproved : <b>'.$css.'</b><br>CSS Tutorials Waiti
 <td><b>Delete:</b></td>
 </tr>';
 $cerereSQL = 'SELECT * FROM `banner` WHERE `aprove`="No" ORDER BY `id` DESC';
-$rezultat = mysql_query($cerereSQL,$conexiune);
-while($rand = mysql_fetch_array($rezultat)) {
+$rezultat = mysqli_query($conexiune, $cerereSQL);
+while($rand = mysqli_fetch_assoc($rezultat)) {
                         echo '<tr>
                               <td>'.$rand['id'].'</td>
                               <td><a href="'.$rand['url'].'" target="_blank">'.$rand['title'].'</a></td>
@@ -96,8 +95,8 @@ while($rand = mysql_fetch_array($rezultat)) {
 <td><b>Delete:</b></td>
 </tr><tr><td align="center" colspan="9"><b>CSS</b></td></tr>';
 $cerereSQL = "SELECT * FROM `css` WHERE `aprove`='No' ORDER BY `id` DESC";
-$rezultat = mysql_query($cerereSQL,$conexiune);
-while($rand = mysql_fetch_array($rezultat)) {
+$rezultat = mysqli_query($conexiune, $cerereSQL);
+while($rand = mysqli_fetch_assoc($rezultat)) {
                         echo '<tr>
                               <td>'.$rand['id'].'</td>
                               <td><a href="'.$rand['url'].'" target="_blank">'.$rand['title'].'</a></td>
@@ -111,8 +110,8 @@ while($rand = mysql_fetch_array($rezultat)) {
                               </tr>'; }
 echo '<tr><td align="center" colspan="9"><b>HTML</b></td></tr>';
 $cerereSQL = "SELECT * FROM `html` WHERE `aprove`='No' ORDER BY `id` DESC";
-$rezultat = mysql_query($cerereSQL,$conexiune);
-while($rand = mysql_fetch_array($rezultat)) {
+$rezultat = mysqli_query($conexiune, $cerereSQL);
+while($rand = mysqli_fetch_assoc($rezultat)) {
                         echo '<tr>
                               <td>'.$rand['id'].'</td>
                               <td><a href="'.$rand['url'].'" target="_blank">'.$rand['title'].'</a></td>
@@ -126,8 +125,8 @@ while($rand = mysql_fetch_array($rezultat)) {
                               </tr>'; }
 echo '<tr><td align="center" colspan="9"><b>PHP</b></td></tr>';
 $cerereSQL = "SELECT * FROM `php` WHERE `aprove`='No' ORDER BY `id` DESC";
-$rezultat = mysql_query($cerereSQL,$conexiune);
-while($rand = mysql_fetch_array($rezultat)) {
+$rezultat = mysqli_query($conexiune, $cerereSQL);
+while($rand = mysqli_fetch_assoc($rezultat)) {
                         echo '<tr>
                               <td>'.$rand['id'].'</td>
                               <td><a href="'.$rand['url'].'" target="_blank">'.$rand['title'].'</a></td>
@@ -141,8 +140,8 @@ while($rand = mysql_fetch_array($rezultat)) {
                               </tr>'; }
 echo '<tr><td align="center" colspan="9"><b>PHOTOSHOP</b></td></tr>';
 $cerereSQL = "SELECT * FROM `ps` WHERE `aprove`='No' ORDER BY `id` DESC";
-$rezultat = mysql_query($cerereSQL,$conexiune);
-while($rand = mysql_fetch_array($rezultat)) {
+$rezultat = mysqli_query($conexiune, $cerereSQL);
+while($rand = mysqli_fetch_assoc($rezultat)) {
                         echo '<tr>
                               <td>'.$rand['id'].'</td>
                               <td><a href="'.$rand['url'].'" target="_blank">'.$rand['title'].'</a></td>
@@ -222,7 +221,7 @@ echo '<br><br><br><center><h3>Adding...</h3></center><br><br><br>';
 $data = date('d.m.Y');
 $cerereSQL = "INSERT INTO `banner` ( `title`, `url`, `banner`, `descriere`, `data`, `aprove`) 
                    VALUES ( '".htmlentities($_SESSION['title'], ENT_QUOTES)."', '".htmlentities($_SESSION['url'], ENT_QUOTES)."', '".htmlentities($_SESSION['banner'], ENT_QUOTES)."', '".htmlentities($_SESSION['descriere'], ENT_QUOTES)."', '".$data."', 'Yes')";
-mysql_query($cerereSQL, $conexiune);
+mysqli_query($conexiune, $cerereSQL);
 
 $_SESSION['title'] = '';
 $_SESSION['url'] = '';
@@ -270,8 +269,8 @@ echo '<table width="500" border=1 align=center><tr>
 <td><b>Delete:</b></td>
 </tr>';
 $cerereSQL = 'SELECT * FROM `banner` WHERE `aprove`="No" ORDER BY `'.$_POST['sort2'].'` '.$_POST['fel2'].'';
-$rezultat = mysql_query($cerereSQL,$conexiune);
-while($rand = mysql_fetch_array($rezultat)) {
+$rezultat = mysqli_query($conexiune, $cerereSQL);
+while($rand = mysqli_fetch_assoc($rezultat)) {
                         echo '<tr>
                               <td>'.$rand['id'].'</td>
                               <td><a href="'.$rand['url'].'" target="_blank">'.$rand['title'].'</a></td>
@@ -317,8 +316,8 @@ echo '<table width="500" border=1 align=center><tr>
 <td><b>Delete:</b></td>
 </tr>';
 $cerereSQL = 'SELECT * FROM `banner` WHERE `aprove`="Yes" ORDER BY `'.$_POST['sort'].'` '.$_POST['fel'].'';
-$rezultat = mysql_query($cerereSQL,$conexiune);
-while($rand = mysql_fetch_array($rezultat)) {
+$rezultat = mysqli_query($conexiune, $cerereSQL);
+while($rand = mysqli_fetch_assoc($rezultat)) {
                         echo '<tr>
                               <td>'.$rand['id'].'</td>
                               <td><a href="'.$rand['url'].'" target="_blank">'.$rand['title'].'</a></td>
@@ -342,8 +341,8 @@ if(!is_numeric($_GET['id'])) {
 echo '<br><br><br><center><h3><font color=red>Error!<br><a href="javascript:history.back()">Go Back</a></font></h3></center><br><br><br>';
 } else {
    $cerereSQL = "SELECT * FROM `banner` WHERE `id`='".$_GET['id']."'"; 
-   $rezultat = mysql_query($cerereSQL, $conexiune);
-   while($rand = mysql_fetch_array($rezultat))
+   $rezultat = mysqli_query($conexiune, $cerereSQL);
+   while($rand = mysqli_fetch_assoc($rezultat))
    {
 echo '<a href="admin_log.php">Admin Area</a> > <a href="admin_log.php?page=banner">Banners</a> > <a href="admin_log.php?page=banner&vaf=bannerlist">Banner List</a> > Edit Banner<br><p></p>';
 echo '<form name="add" action="admin_log.php?page=banner&vaf=editing" method="post">
@@ -391,7 +390,7 @@ else
 echo '<br><br><br><center><h3>Modifing...</h3></center><br><br><br>';
 
 $cerereSQL = "UPDATE `banner` SET `title`='".htmlentities($_SESSION['title'], ENT_QUOTES)."', `url`='".htmlentities($_SESSION['url'], ENT_QUOTES)."', `banner`='".htmlentities($_SESSION['banner'], ENT_QUOTES)."', `descriere`='".htmlentities($_SESSION['descriere'], ENT_QUOTES)."', `aprove`='".htmlentities($_SESSION['aprove'], ENT_QUOTES)."' WHERE `id`='".$_SESSION['id']."'";
-mysql_query($cerereSQL, $conexiune);
+mysqli_query($conexiune, $cerereSQL);
 
 $_SESSION['title'] = '';
 $_SESSION['url'] = '';
@@ -407,7 +406,7 @@ break;
 case 'delbanner';
 
 $cerereSQL = "DELETE FROM `banner` WHERE `id`='".htmlentities($_GET['id'], ENT_QUOTES)."'";
-$rezultat = mysql_query($cerereSQL, $conexiune);
+$rezultat = mysqli_query($conexiune, $cerereSQL);
 echo '<br><br><br><center><h3>Banner was deleted!</h3></center><br><br><br>';
 echo '<META HTTP-EQUIV=Refresh CONTENT="0; URL=admin_log.php?page=banner&vaf=bannerlist">';
 break;
@@ -472,7 +471,7 @@ echo '<br><br><br><center><h3>Adding...</h3></center><br><br><br>';
 $data = date('d.m.Y');
 $cerereSQL = "INSERT INTO `css` ( `title`, `url`, `descriere`, `data`, `user`, `aprove`) 
                    VALUES ( '".htmlentities($_SESSION['title'], ENT_QUOTES)."', '".htmlentities($_SESSION['url'], ENT_QUOTES)."', '".htmlentities($_SESSION['descriere'], ENT_QUOTES)."', '".$data."', 'admin:".htmlentities($_SESSION['usrname'], ENT_QUOTES)."', 'Yes')";
-mysql_query($cerereSQL, $conexiune);
+mysqli_query($conexiune, $cerereSQL);
 
 $_SESSION['title'] = '';
 $_SESSION['url'] = '';
@@ -518,8 +517,8 @@ echo '<table width="660" border=1 align=center><tr>
 <td><b>Delete:</b></td>
 </tr>';
 $cerereSQL = "SELECT * FROM `css` WHERE `aprove`='No' ORDER BY `".$_POST['sort2']."` ".$_POST['fel2']."";
-$rezultat = mysql_query($cerereSQL,$conexiune);
-while($rand = mysql_fetch_array($rezultat)) {
+$rezultat = mysqli_query($conexiune, $cerereSQL);
+while($rand = mysqli_fetch_assoc($rezultat)) {
                         echo '<tr>
                               <td>'.$rand['id'].'</td>
                               <td><a href="'.$rand['url'].'" target="_blank">'.$rand['title'].'</a></td>
@@ -567,8 +566,8 @@ echo '<table width="660" border=1 align=center><tr>
 <td><b>Delete:</b></td>
 </tr>';
 $cerereSQL = "SELECT * FROM `css` WHERE `aprove`='Yes' ORDER BY `".$_POST['sort']."` ".$_POST['fel']."";
-$rezultat = mysql_query($cerereSQL,$conexiune);
-while($rand = mysql_fetch_array($rezultat)) {
+$rezultat = mysqli_query($conexiune, $cerereSQL);
+while($rand = mysqli_fetch_assoc($rezultat)) {
                         echo '<tr>
                               <td>'.$rand['id'].'</td>
                               <td><a href="'.$rand['url'].'" target="_blank">'.$rand['title'].'</a></td>
@@ -591,8 +590,8 @@ if(!is_numeric($_GET['id'])) {
 echo '<br><br><br><center><h3><font color=red>Error!<br><a href="javascript:history.back()">Go Back</a></font></h3></center><br><br><br>';
 } else {
    $cerereSQL = "SELECT * FROM `css` WHERE `id`='".$_GET['id']."'"; 
-   $rezultat = mysql_query($cerereSQL, $conexiune);
-   while($rand = mysql_fetch_array($rezultat))
+   $rezultat = mysqli_query($conexiune, $cerereSQL);
+   while($rand = mysqli_fetch_assoc($rezultat))
    {
 echo '<a href="admin_log.php">Admin Area</a> > <a href="admin_log.php?page=css">CSS Stylesheets</a> > <a href="admin_log.php?page=css&vaf=tutlist">CSS Tutorial List</a> > Edit CSS Tutorial<br><p></p>';
 echo '<form name="add" action="admin_log.php?page=css&vaf=editingtut" method="post">
@@ -634,7 +633,7 @@ else
 echo '<br><br><br><center><h3>Modifing...</h3></center><br><br><br>';
 
 $cerereSQL = "UPDATE `css` SET `title`='".htmlentities($_SESSION['title'], ENT_QUOTES)."', `url`='".htmlentities($_SESSION['url'], ENT_QUOTES)."', `descriere`='".htmlentities($_SESSION['descriere'], ENT_QUOTES)."', `aprove`='".htmlentities($_SESSION['aprove'], ENT_QUOTES)."' WHERE `id`='".$_SESSION['id']."'";
-mysql_query($cerereSQL, $conexiune);
+mysqli_query($conexiune, $cerereSQL);
 
 $_SESSION['title'] = '';
 $_SESSION['url'] = '';
@@ -647,7 +646,7 @@ break;
 
 case 'deltut':
 $cerereSQL = "DELETE FROM `css` WHERE `id`='".htmlentities($_GET['id'], ENT_QUOTES)."'";
-$rezultat = mysql_query($cerereSQL, $conexiune);
+$rezultat = mysqli_query($conexiune, $cerereSQL);
 echo '<br><br><br><center><h3>Tutorial was deleted!</h3></center><br><br><br>';
 echo '<META HTTP-EQUIV=Refresh CONTENT="0; URL=javascript:history.back()">';
 break;
@@ -707,7 +706,7 @@ echo '<br><br><br><center><h3>Adding...</h3></center><br><br><br>';
 $data = date('d.m.Y');
 $cerereSQL = "INSERT INTO `html` ( `title`, `url`, `descriere`, `data`, `user`, `aprove`) 
                    VALUES ( '".htmlentities($_SESSION['title'], ENT_QUOTES)."', '".htmlentities($_SESSION['url'], ENT_QUOTES)."', '".htmlentities($_SESSION['descriere'], ENT_QUOTES)."', '".$data."', 'admin:".htmlentities($_SESSION['usrname'], ENT_QUOTES)."', 'Yes')";
-mysql_query($cerereSQL, $conexiune);
+mysqli_query($conexiune, $cerereSQL);
 
 $_SESSION['title'] = '';
 $_SESSION['url'] = '';
@@ -754,8 +753,8 @@ echo '<table width="500" border=1 align=center>
 <td><b>Delete:</b></td>
 </tr>';
 $cerereSQL = 'SELECT * FROM `html` WHERE `aprove`="No" ORDER BY `'.$_POST['sort2'].'` '.$_POST['fel2'].'';
-$rezultat = mysql_query($cerereSQL,$conexiune);
-while($rand = mysql_fetch_array($rezultat)) {
+$rezultat = mysqli_query($conexiune, $cerereSQL);
+while($rand = mysqli_fetch_assoc($rezultat)) {
                         echo '<tr>
                               <td>'.$rand['id'].'</td>
                               <td><a href="'.$rand['url'].'" target="_blank">'.$rand['title'].'</a></td>
@@ -803,8 +802,8 @@ echo '<table width="500" border=1 align=center>
 <td><b>Delete:</b></td>
 </tr>';
 $cerereSQL = 'SELECT * FROM `html` WHERE `aprove`="Yes" ORDER BY `'.$_POST['sort'].'` '.$_POST['fel'].'';
-$rezultat = mysql_query($cerereSQL,$conexiune);
-while($rand = mysql_fetch_array($rezultat)) {
+$rezultat = mysqli_query($conexiune, $cerereSQL);
+while($rand = mysqli_fetch_assoc($rezultat)) {
                         echo '<tr>
                               <td>'.$rand['id'].'</td>
                               <td><a href="'.$rand['url'].'" target="_blank">'.$rand['title'].'</a></td>
@@ -828,8 +827,8 @@ if(!is_numeric($_GET['id'])) {
 echo '<br><br><br><center><h3><font color=red>Error!<br><a href="javascript:history.back()">Go Back</a></font></h3></center><br><br><br>';
 } else {
    $cerereSQL = "SELECT * FROM `html` WHERE `id`='".$_GET['id']."'"; 
-   $rezultat = mysql_query($cerereSQL, $conexiune);
-   while($rand = mysql_fetch_array($rezultat))
+   $rezultat = mysqli_query($conexiune, $cerereSQL);
+   while($rand = mysqli_fetch_assoc($rezultat))
    {
 echo '<a href="admin_log.php">Admin Area</a> > <a href="admin_log.php?page=html">HTML</a> > <a href="admin_log.php?page=html&vaf=tutlist">HTML Tutorial List</a> > Edit HTML Tutorial<br><p></p>';
 echo '<form name="add" action="admin_log.php?page=html&vaf=editingtut" method="post">
@@ -871,7 +870,7 @@ else
 echo '<br><br><br><center><h3>Modifing...</h3></center><br><br><br>';
 
 $cerereSQL = "UPDATE `html` SET `title`='".htmlentities($_SESSION['title'], ENT_QUOTES)."', `url`='".htmlentities($_SESSION['url'], ENT_QUOTES)."', `descriere`='".htmlentities($_SESSION['descriere'], ENT_QUOTES)."', `aprove`='".htmlentities($_SESSION['aprove'], ENT_QUOTES)."' WHERE `id`='".$_SESSION['id']."'";
-mysql_query($cerereSQL, $conexiune);
+mysqli_query($conexiune, $cerereSQL);
 
 $_SESSION['title'] = '';
 $_SESSION['url'] = '';
@@ -884,7 +883,7 @@ break;
 
 case 'deltut':
 $cerereSQL = "DELETE FROM `html` WHERE `id`='".htmlentities($_GET['id'], ENT_QUOTES)."'";
-$rezultat = mysql_query($cerereSQL, $conexiune);
+$rezultat = mysqli_query($conexiune, $cerereSQL);
 echo '<br><br><br><center><h3>Tutorial was deleted!</h3></center><br><br><br>';
 echo '<META HTTP-EQUIV=Refresh CONTENT="0; URL=javascript:history.back()">';
 break;
@@ -948,7 +947,7 @@ echo '<br><br><br><center><h3>Adding...</h3></center><br><br><br>';
 $data = date('d.m.Y');
 $cerereSQL = "INSERT INTO `ps` ( `title`, `url`, `descriere`, `banner`, `data`, `user`, `aprove`) 
                    VALUES ( '".htmlentities($_SESSION['title'], ENT_QUOTES)."', '".htmlentities($_SESSION['url'], ENT_QUOTES)."', '".htmlentities($_SESSION['descriere'], ENT_QUOTES)."', '".htmlentities($_SESSION['banner'], ENT_QUOTES)."', '".$data."', 'admin:".htmlentities($_SESSION['usrname'], ENT_QUOTES)."', 'Yes')";
-mysql_query($cerereSQL, $conexiune);
+mysqli_query($conexiune, $cerereSQL);
 
 $_SESSION['title'] = '';
 $_SESSION['url'] = '';
@@ -996,8 +995,8 @@ echo '<table width="500" border=1 align=center>
 <td><b>Delete:</b></td>
 </tr>';
 $cerereSQL = 'SELECT * FROM `ps` WHERE `aprove`="No" ORDER BY `'.$_POST['sort2'].'` '.$_POST['fel2'].'';
-$rezultat = mysql_query($cerereSQL,$conexiune);
-while($rand = mysql_fetch_array($rezultat)) {
+$rezultat = mysqli_query($conexiune, $cerereSQL);
+while($rand = mysqli_fetch_assoc($rezultat)) {
                         echo '<tr>
                               <td>'.$rand['id'].'</td>
                               <td><a href="'.$rand['url'].'" target="_blank">'.$rand['title'].'</a></td>
@@ -1045,8 +1044,8 @@ echo '<table width="500" border=1 align=center>
 <td><b>Delete:</b></td>
 </tr>';
 $cerereSQL = 'SELECT * FROM `ps` WHERE `aprove`="Yes" ORDER BY `'.$_POST['sort'].'` '.$_POST['fel'].'';
-$rezultat = mysql_query($cerereSQL,$conexiune);
-while($rand = mysql_fetch_array($rezultat)) {
+$rezultat = mysqli_query($conexiune, $cerereSQL);
+while($rand = mysqli_fetch_assoc($rezultat)) {
                         echo '<tr>
                               <td>'.$rand['id'].'</td>
                               <td><a href="'.$rand['url'].'" target="_blank">'.$rand['title'].'</a></td>
@@ -1070,8 +1069,8 @@ if(!is_numeric($_GET['id'])) {
 echo '<br><br><br><center><h3><font color=red>Error!<br><a href="javascript:history.back()">Go Back</a></font></h3></center><br><br><br>';
 } else {
    $cerereSQL = "SELECT * FROM `ps` WHERE `id`='".$_GET['id']."'"; 
-   $rezultat = mysql_query($cerereSQL, $conexiune);
-   while($rand = mysql_fetch_array($rezultat))
+   $rezultat = mysqli_query($conexiune, $cerereSQL);
+   while($rand = mysqli_fetch_assoc($rezultat))
    {
 echo '<a href="admin_log.php">Admin Area</a> > <a href="admin_log.php?page=ps">Photoshop</a> > <a href="admin_log.php?page=ps&vaf=tutlist">Photoshop Tutorial List</a> > Edit Photoshop Tutorial<br><p></p>';
 echo '<form name="add" action="admin_log.php?page=ps&vaf=editingtut" method="post">
@@ -1117,7 +1116,7 @@ else
 echo '<br><br><br><center><h3>Modifing...</h3></center><br><br><br>';
 
 $cerereSQL = "UPDATE `ps` SET `title`='".htmlentities($_SESSION['title'], ENT_QUOTES)."', `url`='".htmlentities($_SESSION['url'], ENT_QUOTES)."', `descriere`='".htmlentities($_SESSION['descriere'], ENT_QUOTES)."', `banner`='".htmlentities($_SESSION['banner'], ENT_QUOTES)."', `aprove`='".htmlentities($_SESSION['aprove'], ENT_QUOTES)."' WHERE `id`='".$_SESSION['id']."'";
-mysql_query($cerereSQL, $conexiune);
+mysqli_query($conexiune, $cerereSQL);
 
 $_SESSION['title'] = '';
 $_SESSION['url'] = '';
@@ -1131,7 +1130,7 @@ break;
 
 case 'deltut':
 $cerereSQL = "DELETE FROM `ps` WHERE `id`='".htmlentities($_GET['id'], ENT_QUOTES)."'";
-$rezultat = mysql_query($cerereSQL, $conexiune);
+$rezultat = mysqli_query($conexiune, $cerereSQL);
 echo '<br><br><br><center><h3>Tutorial was deleted!</h3></center><br><br><br>';
 echo '<META HTTP-EQUIV=Refresh CONTENT="0; URL=javascript:history.back()">';
 break;
@@ -1191,7 +1190,7 @@ echo '<br><br><br><center><h3>Adding...</h3></center><br><br><br>';
 $data = date('d.m.Y');
 $cerereSQL = "INSERT INTO `php` ( `title`, `url`, `descriere`, `data`, `user`, `aprove`) 
                    VALUES ( '".htmlentities($_SESSION['title'], ENT_QUOTES)."', '".htmlentities($_SESSION['url'], ENT_QUOTES)."', '".htmlentities($_SESSION['descriere'], ENT_QUOTES)."', '".$data."', 'admin:".htmlentities($_SESSION['usrname'], ENT_QUOTES)."', 'Yes')";
-mysql_query($cerereSQL, $conexiune);
+mysqli_query($conexiune, $cerereSQL);
 
 $_SESSION['title'] = '';
 $_SESSION['url'] = '';
@@ -1238,8 +1237,8 @@ echo '<table width="500" border=1 align=center>
 <td><b>Delete:</b></td>
 </tr>';
 $cerereSQL = 'SELECT * FROM `php` WHERE `aprove`="No" ORDER BY `'.$_POST['sort2'].'` '.$_POST['fel2'].'';
-$rezultat = mysql_query($cerereSQL,$conexiune);
-while($rand = mysql_fetch_array($rezultat)) {
+$rezultat = mysqli_query($conexiune, $cerereSQL);
+while($rand = mysqli_fetch_assoc($rezultat)) {
                         echo '<tr>
                               <td>'.$rand['id'].'</td>
                               <td><a href="'.$rand['url'].'" target="_blank">'.$rand['title'].'</a></td>
@@ -1287,8 +1286,8 @@ echo '<table width="500" border=1 align=center>
 <td><b>Delete:</b></td>
 </tr>';
 $cerereSQL = 'SELECT * FROM `php` WHERE `aprove`="Yes" ORDER BY `'.$_POST['sort'].'` '.$_POST['fel'].'';
-$rezultat = mysql_query($cerereSQL,$conexiune);
-while($rand = mysql_fetch_array($rezultat)) {
+$rezultat = mysqli_query($conexiune, $cerereSQL);
+while($rand = mysqli_fetch_assoc($rezultat)) {
                         echo '<tr>
                               <td>'.$rand['id'].'</td>
                               <td><a href="'.$rand['url'].'" target="_blank">'.$rand['title'].'</a></td>
@@ -1312,8 +1311,8 @@ if(!is_numeric($_GET['id'])) {
 echo '<br><br><br><center><h3><font color=red>Error!<br><a href="javascript:history.back()">Go Back</a></font></h3></center><br><br><br>';
 } else {
    $cerereSQL = "SELECT * FROM `php` WHERE `id`='".$_GET['id']."'"; 
-   $rezultat = mysql_query($cerereSQL, $conexiune);
-   while($rand = mysql_fetch_array($rezultat))
+   $rezultat = mysqli_query($conexiune, $cerereSQL);
+   while($rand = mysqli_fetch_assoc($rezultat))
    {
 echo '<a href="admin_log.php">Admin Area</a> > <a href="admin_log.php?page=php">PHP</a> > <a href="admin_log.php?page=php&vaf=tutlist">PHP Tutorial List</a> > Edit PHP Tutorial<br><p></p>';
 echo '<form name="add" action="admin_log.php?page=php&vaf=editingtut" method="post">
@@ -1355,7 +1354,7 @@ else
 echo '<br><br><br><center><h3>Modifing...</h3></center><br><br><br>';
 
 $cerereSQL = "UPDATE `php` SET `title`='".htmlentities($_SESSION['title'], ENT_QUOTES)."', `url`='".htmlentities($_SESSION['url'], ENT_QUOTES)."', `descriere`='".htmlentities($_SESSION['descriere'], ENT_QUOTES)."', `aprove`='".htmlentities($_SESSION['aprove'], ENT_QUOTES)."' WHERE `id`='".$_SESSION['id']."'";
-mysql_query($cerereSQL, $conexiune);
+mysqli_query($conexiune, $cerereSQL);
 
 $_SESSION['title'] = '';
 $_SESSION['url'] = '';
@@ -1368,7 +1367,7 @@ break;
 
 case 'deltut':
 $cerereSQL = "DELETE FROM `php` WHERE `id`='".htmlentities($_GET['id'], ENT_QUOTES)."'";
-$rezultat = mysql_query($cerereSQL, $conexiune);
+$rezultat = mysqli_query($conexiune, $cerereSQL);
 echo '<br><br><br><center><h3>Tutorial was deleted!</h3></center><br><br><br>';
 echo '<META HTTP-EQUIV=Refresh CONTENT="0; URL=javascript:history.back()">';
 break;
@@ -1392,16 +1391,16 @@ echo '<a href="admin_log.php">Admin Area</a> > <a href="admin_log.php?page=sbox"
 
 echo '<div class=\"shoutbox\">';
 $cerereSQL = 'SELECT * FROM `shoutbox` ORDER BY `id` DESC';
-$rezultat = mysql_query($cerereSQL,$conexiune);
-while($rand = mysql_fetch_array($rezultat)) {
-                        echo '<li title="Shouted on '.$rand['date'].'" style=\"cursor: pointer\"><strong>'.$rand[name].'</strong>: '.$rand[message].' ... '.$rand[ip].' <a href="admin_log.php?page=sbox&vaf=deltut&id='.$rand['id'].'">[DELETE]</a></li>';
+$rezultat = mysqli_query($conexiune, $cerereSQL);
+while($rand = mysqli_fetch_assoc($rezultat)) {
+                        echo '<li title="Shouted on '.$rand['date'].'" style=\"cursor: pointer\"><strong>'.$rand['name'].'</strong>: '.$rand['message'].' ... '.$rand['ip'].' <a href="admin_log.php?page=sbox&vaf=deltut&id='.$rand['id'].'">[DELETE]</a></li>';
 
  } echo '</div>';
 break;
 
 case 'deltut':
 $cerereSQL = "DELETE FROM `shoutbox` WHERE `id`='".htmlentities($_GET['id'], ENT_QUOTES)."'";
-$rezultat = mysql_query($cerereSQL, $conexiune);
+$rezultat = mysqli_query($conexiune, $cerereSQL);
 echo '<br><br><br><center><h3>Message was deleted!</h3></center><br><br><br>';
 echo '<META HTTP-EQUIV=Refresh CONTENT="0; URL=javascript:history.back()">';
 break;
@@ -1415,4 +1414,3 @@ echo '<br>';
 echo '</td>
   </tr>
 </table>';
-?>

@@ -12,7 +12,7 @@
   </tr>
 </table><br>
 <font color="FFFFFF">
-<div align="center"><a href="admin_log.php" class="orange"><img src="images/admin.jpg" align="absmiddle" width="30" height="15"></img></a>&nbsp;<strong>Created By P4uL. Powered by VuFu.Net. Copyright &copy; 2005-2006 All Rights Reserved</strong>
+<div align="center"><a href="admin_log.php" class="orange"><img src="images/admin.jpg" align="absmiddle" width="30" height="15"></img></a>&nbsp;<strong>Created By Paul Istratoaie. Copyright &copy; 2005-2006 All Rights Reserved</strong>
   <table><tbody><tr><td></td></tr></tbody></table></div>
 <br>
 </body>

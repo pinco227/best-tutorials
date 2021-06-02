@@ -1,9 +1,9 @@
 <?php
 
-$cerereSQLbanner = mysql_query('SELECT * FROM `banner` WHERE `aprove`="Yes" ORDER BY `hits` DESC');
+$cerereSQLbanner = mysqli_query($conexiune, 'SELECT * FROM `banner` WHERE `aprove`="Yes" ORDER BY `hits` DESC');
 $n=0;
   echo '<center>';
-  while($rand = mysql_fetch_array($cerereSQLbanner))
+  while($rand = mysqli_fetch_assoc($cerereSQLbanner))
 {
 
 $n++;
